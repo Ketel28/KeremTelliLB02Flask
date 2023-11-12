@@ -29,6 +29,9 @@ def apply_operations_to_players(players, map_func=None, reduce_func=None, filter
 
     return players
 
+# Kommentar für möglichen Test der apply_operations_to_players-Funktion
+# Hier könnte man testen, ob die Funktion korrekt mappt, filtert und reduziert.
+
 def update_player_age(players, player_name, new_age):
     updated_players = players.copy()
     for player in updated_players:
@@ -46,6 +49,9 @@ def calculate_total_goals(players):
 def transform_to_dict(players):
     player_dict = reduce(lambda acc, player: {**acc, player.name: {"Alter": player.age, "Tore": player.goals}}, players, {})
     return player_dict
+
+# Kommentar für möglichen Test der /player_dict-Route
+# Hier könnte man testen, ob die Spielerdaten korrekt in ein Dictionary transformiert werden.
 
 # Erstelle eine Liste aller Spieler
 players = [
@@ -88,9 +94,12 @@ def total_goals():
     total_goals_value = calculate_total_goals(players)
     return f"Gesamtanzahl der Tore: {total_goals_value}"
 
+# Kommentar für möglichen Test der /total_goals-Route
+# Hier könnte man testen, ob die Gesamtzahl der Tore korrekt berechnet wird.
+
 @app.route('/')
 def welcome():
-    return 'Willkommen bei der Fussballanalyse'
+    return f'Willkommen bei der Fussballanalyse'
 
 @app.route('/players')
 def get_players():
@@ -112,6 +121,9 @@ def average_age():
     total_age = apply_operations_to_players(players, None, reduce_func)
     average_age_value = total_age / len(players)
     return f"Durchschnittsalter: {average_age_value:.2f}"
+
+# Kommentar für möglichen Test der /average_age-Route
+# Hier könnte man testen, ob das Durchschnittsalter korrekt berechnet wird.
 
 @app.route('/top_scorer')
 def get_top_scorer():
